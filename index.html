@@ -3,25 +3,149 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101820">
-  <title>vid-force · Home</title>
-  <style>
-    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #101820; color: #f4f1ea; }
-    * { box-sizing: border-box; } body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 2rem; }
-    main { width: min(760px, 100%); } .eyebrow { color: #86d8c2; text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 700; }
-    h1 { font-size: clamp(3rem, 10vw, 6.5rem); letter-spacing: -.07em; line-height: .95; margin: 1rem 0; }
-    p { max-width: 38rem; color: #b7c2c7; font-size: clamp(1.05rem, 2vw, 1.25rem); line-height: 1.7; }
-    a { display: inline-block; margin-top: 1.25rem; padding: .85rem 1.1rem; border: 1px solid #86d8c2; border-radius: 999px; color: #86d8c2; text-decoration: none; }
-    a:hover { background: #86d8c2; color: #101820; } footer { margin-top: 5rem; color: #73838a; font-size: .9rem; }
-  </style>
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="VidForce predicts an interaction trajectory and force profile from third-person RGB video. Anonymous research supplement.">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
+  <title>VidForce: Predicting Force-Aware Articulation by Observing Humans</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="static/css/site.css?v=20261005q">
 </head>
 <body>
-  <main>
-    <div class="eyebrow">Hello, world</div>
-    <h1>Welcome to<br>vid-force.</h1>
-    <p>This is my corner of the internet. I’m getting things ready here—more soon.</p>
-    <a href="https://github.com/vid-force">Find me on GitHub ↗</a>
-    <footer>Built with GitHub Pages</footer>
-  </main>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<main id="main-content">
+  <section class="hero" id="overview">
+    <div class="hero-body">
+      <div class="container is-max-desktop has-text-centered">
+        <h1 class="publication-title"><span class="method-name">VidForce:</span> Predicting Force-Aware Articulation by Observing Humans</h1>
+        <p class="publication-venue">Anonymous submission to ICLR 2027</p>
+        <p class="publication-authors">Anonymous authors</p>
+        <div class="publication-links" aria-label="Research materials">
+          <span class="resource-link" aria-disabled="true">Paper <small>coming soon</small></span>
+          <span class="resource-link" aria-disabled="true">Code <small>coming soon</small></span>
+          <a class="resource-link" href="#video">Video</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section teaser">
+    <div class="container is-max-desktop">
+      <figure>
+        <a href="figures/qualitative_main.png" aria-label="Open teaser figure at full resolution"><picture><source srcset="figures/qualitative_main.webp" type="image/webp"><img src="figures/qualitative_main.png" width="2000" height="1308" alt="Refrigerator opening by a person, cupboard closing and drawer opening by the gripper: predicted trajectories of VidForce and four baselines over the frames with their ATE, and predicted force profiles against the measured or paired reference on one shared force scale." fetchpriority="high"></picture></a>
+        <figcaption>VidForce predicts a <strong>3D trajectory and force profile</strong> from a human interaction video.</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="section band" id="abstract">
+    <div class="container reading-width">
+      <h2 class="title is-3 has-text-centered">Abstract</h2>
+      <div class="abstract-copy compact"><p>People can anticipate how an object moves and the effort an interaction may require by watching others. How can embodied agents acquire this understanding from video? Force measurements provide direct sensory supervision, but require specialized equipment and remain limited in quantity. We introduce VidForce, which estimates an interaction trajectory together with a force profile from a third-person RGB video; 2D contact clicks and textual object–action prompts are optional. Our approach makes limited instrumented measurements useful for interpreting human interactions through learned physical prototypes as a prior. The prototypes share learned force levels and temporal profiles across interactions of comparable effort, with visual and semantic cues determining their contribution to each observation. Geometric and vision–language features adapt this prior to the observed interaction, while a joint conditional flow refines an initial tracked trajectory together with the force profile. Paired human and instrumented-gripper recordings provide measured force references for supervising human video, and a separately trained torque model demonstrates that the formulation extends to other sensory quantities. We evaluate trajectory recovery and force estimation through baseline comparisons and controlled ablations on held-out interactions from the Hoi! dataset. On this evaluation subset, VidForce achieves 6.6 cm ATE, peak-force MAE and RMSE of 4.81 N and 5.92 N, respectively, and force-profile RMSE of 4.95 N. On real-world videos, VidForce infers motion and force reliably and consistently despite the variability in human execution. We further deploy VidForce on a Spot robot, where trajectories and force profiles estimated from human demonstrations drive real-world articulated-object manipulation, and report success rates across repeated trials.</p></div>
+    </div>
+  </section>
+  <section class="section" id="method">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Method</h2>
+      <figure><a href="figures/architecture.png" aria-label="Open method diagram at full resolution"><img src="figures/architecture.png" width="1971" height="597" loading="lazy" alt="Frozen video encoders feed a fusion transformer, a learned force-prototype prior, and joint conditional flow to predict 3D trajectory and force profile."></a><figcaption>Learned force prototypes provide a prior; a joint flow refines motion and force together.</figcaption></figure>
+    </div>
+  </section>
+  <section class="section band" id="results">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Comparison with Baselines</h2>
+      <p class="section-intro"><strong>6.6 cm</strong> trajectory ATE · <strong>4.81 N</strong> peak-force MAE · <strong>4.95 N</strong> profile RMSE on held-out Hoi! interactions.</p>
+      <div class="results-grid wide"><div class="table-container"><table class="table overview compact"><caption>Baselines at a glance</caption><thead><tr><th scope="col">Method</th><th scope="col">Approach</th><th scope="col">Input (view)</th><th scope="col">Traj.</th><th scope="col">Peak</th><th scope="col">Profile</th></tr></thead><tbody>
+          <tr><th scope="row">D4RT initialization</th><td>contact-seeded tracks</td><td>clip, contact (T)</td><td>✓</td><td>–</td><td>–</td></tr>
+          <tr><th scope="row">CoTracker3 + DA3</th><td>tracked contact pixel</td><td>clip, contact (T)</td><td>✓</td><td>–</td><td>–</td></tr>
+          <tr><th scope="row">Articulate-Anything</th><td>Gemini-built asset</td><td>5 frames, contact (T)</td><td>✓</td><td>–</td><td>–</td></tr>
+          <tr><th scope="row">EgoInfinity</th><td>hand reconstruction</td><td>clip, contact (T, human)</td><td>✓</td><td>–</td><td>–</td></tr>
+          <tr class="sep"><th scope="row">GPT-5.5</th><td>prompted peak estimate</td><td>8 frames, text (T)</td><td>–</td><td>✓</td><td>–</td></tr>
+          <tr><th scope="row">ForceSight, zero-shot</th><td>force goal</td><td>RGB-D frame, text (G, T)</td><td>–</td><td>✓</td><td>–</td></tr>
+          <tr><th scope="row">ForceSight, adapted</th><td>per-frame force</td><td>RGB-D frame, text (G, T)</td><td>–</td><td>✓</td><td>✓</td></tr>
+          <tr class="ours sep"><th scope="row">VidForce</th><td>prior + joint flow</td><td>clip, contact, text (T)</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        </tbody></table></div>
+      <p class="fine-print">T third-person, G gripper-mounted camera. Contact point and prompt are optional for VidForce.</p></div>
+      <h3 class="subtitle">Trajectory recovery</h3>
+      <div class="results-grid"><div class="table-container"><table class="table is-fullwidth"><caption>ATE (cm), median over sequences</caption><thead><tr><th scope="col">Method</th><th scope="col">All (99)</th><th scope="col">Human (51)</th></tr></thead><tbody>
+          <tr><th scope="row">D4RT initialization</th><td>11.8</td><td>11.1</td></tr>
+          <tr><th scope="row">CoTracker3 + depth</th><td>13.3</td><td>14.2</td></tr>
+          <tr><th scope="row">Articulate-Anything (adapted)</th><td>17.5</td><td>17.3</td></tr>
+          <tr><th scope="row">EgoInfinity (adapted)</th><td>—</td><td>15.1</td></tr>
+          <tr class="ours"><th scope="row">VidForce</th><td>6.6 ± 0.4</td><td>7.9 ± 0.8</td></tr>
+        </tbody></table></div></div>
+      <figure>
+        <a href="figures/trajectory_baselines.png" aria-label="Open the trajectory baseline comparison at full resolution"><picture><source srcset="figures/trajectory_baselines.webp" type="image/webp"><img src="figures/trajectory_baselines.png" width="2149" height="1487" loading="lazy" alt="Human and gripper sequence of the same kitchen drawer: trajectories of VidForce and four baselines overlaid on the frame and in a top view, VidForce force profiles against the reference, and an ATE table."></picture></a>
+        <figcaption><strong>Same drawer, person and gripper, one camera.</strong> All methods start from the manual click <svg class="sym" viewBox="0 0 20 20" role="img" aria-label="red diamond"><path d="M10 1.5 18.5 10 10 18.5 1.5 10z" fill="#e8412c" stroke="#a8301f" stroke-width="1"/></svg>; the table lists ATE in cm.</figcaption>
+      </figure>
+      <h3 class="subtitle">Force estimation</h3>
+      <div class="results-grid"><div class="table-container"><table class="table is-fullwidth"><caption>Peak-force error (N) on the 48 instrumented recordings</caption><thead><tr><th scope="col">Method</th><th scope="col">MAE</th><th scope="col">RMSE</th></tr></thead><tbody>
+          <tr><th scope="row">GPT-5.5, video</th><td>6.85</td><td>11.88</td></tr>
+          <tr><th scope="row">ForceSight (adapted, third-person)</th><td>10.30 ± 0.75</td><td>16.60 ± 0.92</td></tr>
+          <tr><th scope="row">GPT-5.5, video + text</th><td>6.98</td><td>11.43</td></tr>
+          <tr class="ours"><th scope="row">VidForce</th><td>4.81 ± 0.38</td><td>5.92 ± 0.42</td></tr>
+        </tbody></table></div></div>
+      <figure>
+        <a href="figures/forcesight_compact.png" aria-label="Open the ForceSight comparison at full resolution"><picture><source srcset="figures/forcesight_compact.webp" type="image/webp"><img src="figures/forcesight_compact.png" width="2200" height="1376" loading="lazy" alt="Drawer closing and oven door opening: zero-shot ForceSight outputs on the third-person and gripper-mounted views, and force profiles of VidForce and adapted ForceSight against the measured force."></picture></a>
+        <figcaption><strong>Drawer closing and oven door opening.</strong> Left: a fingertip-force baseline run zero-shot, with its fingertip <svg class="sym" viewBox="0 0 20 20" role="img" aria-label="green dot"><circle cx="10" cy="10" r="6.5" fill="#00ff55" stroke="#555" stroke-width="1.2"/></svg>, applied-force goal <svg class="sym sym-wide" viewBox="0 0 32 20" role="img" aria-label="yellow arrow"><path d="M3 10H21" stroke="#555" stroke-width="5.5" stroke-linecap="round"/><path d="M3 10H21" stroke="#ffee00" stroke-width="3" stroke-linecap="round"/><path d="M20 3.5l9 6.5-9 6.5z" fill="#ffee00" stroke="#555" stroke-width="1.2" stroke-linejoin="round"/></svg>, grip goals <svg class="sym sym-wide" viewBox="0 0 32 20" role="img" aria-label="two green arrows pointing inward"><path d="M2 10h8M30 10h-8" stroke="#555" stroke-width="5.5" stroke-linecap="round"/><path d="M2 10h8M30 10h-8" stroke="#00ff55" stroke-width="3" stroke-linecap="round"/><path d="M9 4.5l6.5 5.5L9 15.5z" fill="#00ff55" stroke="#555" stroke-width="1.2" stroke-linejoin="round"/><path d="M23 4.5 16.5 10 23 15.5z" fill="#00ff55" stroke="#555" stroke-width="1.2" stroke-linejoin="round"/></svg> and object window <svg class="sym sym-wide" viewBox="0 0 32 20" role="img" aria-label="dashed box"><rect x="2" y="3" width="28" height="14" fill="none" stroke="#666" stroke-width="1.8" stroke-dasharray="4 2.5"/></svg>. Right: force profiles against the measured force.</figcaption>
+      </figure>
+      <p class="fine-print">± is the standard deviation over three training seeds; ATE aligns the initial point only. Selected rows from the paper.</p>
+    </div>
+  </section>
+  <section class="section" id="qualitative">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
+      <p class="section-intro">Held-out Hoi! interactions, each performed by a person and by the instrumented gripper.</p>
+      <figure>
+        <a href="figures/eval_gallery.png" aria-label="Open the evaluation gallery at full resolution"><picture><source srcset="figures/eval_gallery.webp" type="image/webp"><img src="figures/eval_gallery.png" width="2200" height="1868" loading="lazy" alt="Four paired interactions, human on top and gripper below: drawer opening, cupboard door closing, refrigerator door closing and oven door opening, each with trajectory overlays and predicted force profiles against the reference."></picture></a>
+        <figcaption><strong>Human (top) and gripper (bottom).</strong> Overlays report ATE; force plots show the prediction against the measured force or the paired gripper reference.</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="section band" id="real-world">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Real-World Videos</h2>
+      <p class="section-intro">Seven phone videos, six kitchen objects, 46 interactions.</p>
+      <figure class="video-figure" id="video">
+        <video controls autoplay muted loop playsinline preload="metadata" poster="videos/oven_vidforce.jpg" width="1800" height="720" aria-label="Six oven-door interactions from one recording with the predicted trajectory and force profile shown in sync, followed by two marked failure cases; contact proposed by the model">
+          <source src="videos/oven_vidforce.mp4" type="video/mp4">
+        </video>
+        <figcaption><strong>Oven door, six interactions in one recording.</strong> Predicted trajectory and force on the video (self-click <svg class="sym" viewBox="0 0 20 20" role="img" aria-label="red plus sign"><path d="M10 3v14M3 10h14" stroke="#e8412c" stroke-width="3.4" stroke-linecap="round"/></svg>) next to the predicted force profile, in sync. Two marked failure cases follow.</figcaption>
+      </figure>
+      <figure>
+        <a href="figures/wild_gallery.png" aria-label="Open the real-world gallery at full resolution"><picture><source srcset="figures/wild_gallery.webp" type="image/webp"><img src="figures/wild_gallery.png" width="2200" height="967" loading="lazy" alt="Dishwasher door and drawer, each opened and closed, with predicted trajectories overlaid on the frames and predicted force profiles below."></picture></a>
+        <figcaption><strong>Dishwasher door and drawer, opened and closed.</strong> <svg class="sym" viewBox="0 0 20 20" role="img" aria-label="red cross"><path d="M4 4 16 16M16 4 4 16" stroke="#e8412c" stroke-width="3.4" stroke-linecap="round"/></svg> marks the manual click.</figcaption>
+      </figure>
+      <details class="paper-details more">
+        <summary>More</summary>
+      <figure class="fig-compact">
+        <a href="figures/realworld_web.png" aria-label="Open the input-guidance and peak-force figure at full resolution"><picture><source srcset="figures/realworld_web.webp" type="image/webp"><img src="figures/realworld_web.png" width="1417" height="1285" loading="lazy" alt="Left: oven opening and closing with the predicted trajectories under four input combinations. Right: predicted peak forces per object and action with manual and automatic inputs, single episodes, misread prompts and luggage-scale readings."></picture></a>
+        <figcaption><strong>Inputs and predicted peaks.</strong> (a) Oven opening and closing under the four input combinations. (b) Predicted peaks per object and action with manual inputs (filled) and automatic inputs (open); ticks are episodes, crosses misread prompts, diamonds luggage-scale readings.</figcaption>
+      </figure>
+      </details>
+    </div>
+  </section>
+  <section class="section" id="robot">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Robot Deployment</h2>
+      <div class="robot-grid">
+        <figure class="video-pair">
+          <div class="video-grid">
+            <div class="video-tile"><video autoplay muted loop playsinline preload="metadata" poster="videos/spot_oven.jpg" width="1280" height="720" aria-label="Spot opening the oven door from a human demonstration"><source src="videos/spot_oven.mp4" type="video/mp4"></video><span class="tag">Oven door</span></div>
+            <div class="video-tile"><video autoplay muted loop playsinline preload="metadata" poster="videos/spot_drawer.jpg" width="1280" height="720" aria-label="Spot opening the drawer from a human demonstration"><source src="videos/spot_drawer.mp4" type="video/mp4"></video><span class="tag">Drawer</span></div>
+          </div>
+          <figcaption>Spot opens the oven door and the drawer from human demonstrations.</figcaption>
+        </figure>
+        <div><p>Oven: <strong>7/10 with force</strong>, 0/10 without. Drawer: 9/10 in both conditions.</p>
+          <div class="table-container"><table class="table is-fullwidth spot"><caption>Successful openings / trials</caption><thead><tr><th scope="col">Object</th><th scope="col" class="c">Viewpoint</th><th scope="col" class="c">Load</th><th scope="col">Without force</th><th scope="col">With force</th></tr></thead><tbody>
+          <tr><th scope="rowgroup" rowspan="2">Oven door</th><td class="c">1</td><td class="c">–</td><td>0/5 <small>4F, 1T</small></td><td>3/5 <small>1P, 1T</small></td></tr>
+          <tr><td class="c">2</td><td class="c">–</td><td>0/5 <small>4F, 1T</small></td><td>4/5 <small>1T</small></td></tr>
+          <tr><th scope="rowgroup" rowspan="2">Drawer</th><td class="c">1</td><td class="c">empty</td><td>5/5</td><td>5/5</td></tr>
+          <tr><td class="c">2</td><td class="c">~5 kg</td><td>4/5 <small>1T</small></td><td>4/5 <small>1T</small></td></tr>
+          </tbody></table></div><p class="fine-print">Five trials per viewpoint and condition. Failures: F force, T trajectory, P partial opening.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer"><div class="container reading-width has-text-centered"><p><a href="#overview">Back to Top</a></p><p class="template-credit">Layout inspired by <a href="https://nerf-mae.github.io/" rel="noreferrer">NeRF-MAE</a>. Original page adapted from the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" rel="noreferrer">Academic Project Page Template</a> and <a href="https://nerfies.github.io/" rel="noreferrer">Nerfies</a>. Website layout: <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license noreferrer">CC BY-SA 4.0</a>.</p></div></footer>
 </body>
 </html>
