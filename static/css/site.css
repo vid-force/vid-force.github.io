@@ -144,3 +144,35 @@ table.spot th[rowspan] { vertical-align: middle; }
 .video-tile .tag { position: absolute; top: 8px; left: 8px; padding: 2px 8px; border-radius: 4px; background: rgba(0, 0, 0, .58); color: #fff; font-size: 13px; line-height: 1.5; }
 .robot-grid .video-pair { max-width: 100%; }
 @media (max-width: 700px) { .video-grid { grid-template-columns: 1fr; } }
+
+/* Simulation carousel. Without JavaScript the slides stack; .is-ready turns them into a carousel. */
+.sim-carousel { max-width: 900px; margin: 0 auto 12px; }
+.sim-toolbar, .sim-tabs, .sim-overlay { display: none; }
+.sim-slide { margin: 0 0 16px; }
+.sim-slide video { display: block; width: 100%; height: auto; aspect-ratio: 1280 / 1084; background: #fff; }
+.sim-carousel.is-ready .sim-toolbar { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 16px; margin-bottom: 12px; }
+.sim-group { display: inline-flex; align-items: center; gap: 8px; }
+.sim-label { font-size: 14px; color: #777; }
+.sim-toggle { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.sim-toggle button, .sim-tabs button { border: 0; background: #f8f8f8; color: #65788b; font: inherit; font-size: 15px; padding: 6px 14px; cursor: pointer; }
+.sim-toggle button + button { border-left: 1px solid var(--line); }
+.sim-toggle button[aria-pressed="true"], .sim-tabs button[aria-selected="true"] { background: var(--link); color: #fff; }
+.sim-toggle button:focus-visible, .sim-tabs button:focus-visible, .sim-nav:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.sim-carousel.is-ready .sim-stage { position: relative; }
+.sim-carousel.is-ready .sim-viewport { overflow: hidden; }
+.sim-carousel.is-ready .sim-track { display: flex; transition: transform .35s ease; }
+.sim-carousel.is-ready .sim-slide { flex: 0 0 100%; min-width: 0; margin: 0; }
+/* the overlay has the video's aspect ratio, so the arrows sit at the video's middle */
+.sim-carousel.is-ready .sim-overlay { display: block; position: absolute; left: 0; right: 0; top: 0; aspect-ratio: 1280 / 1084; pointer-events: none; }
+.sim-nav { display: flex; align-items: center; justify-content: center; position: absolute; top: calc(50% - 20px); width: 40px; height: 40px;
+  border: 0; border-radius: 50%; background: rgba(255, 255, 255, .92); color: var(--ink); font-size: 26px; line-height: 1; cursor: pointer;
+  pointer-events: auto; box-shadow: 0 1px 4px rgba(0, 0, 0, .25); }
+.sim-prev { left: 8px; }
+.sim-next { right: 8px; }
+@media (min-width: 1100px) { .sim-prev { left: -56px; } .sim-next { right: -56px; } }
+.sim-carousel.is-ready .sim-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 12px; }
+.sim-tabs button { border-radius: 8px; }
+@media (max-width: 700px) {
+  .sim-toggle button, .sim-tabs button { font-size: 13px; padding: 6px 10px; }
+  .sim-nav { width: 34px; height: 34px; font-size: 22px; top: calc(25% - 17px); }
+}

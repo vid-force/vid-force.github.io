@@ -10,7 +10,8 @@
   <meta name="color-scheme" content="light">
   <title>VidForce: Predicting Force-Aware Articulation by Observing Humans</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="static/css/site.css?v=20261005q">
+  <link rel="stylesheet" href="static/css/site.css?v=20261110d">
+  <script src="static/js/carousel.js?v=20261110e" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
@@ -142,6 +143,28 @@
           <tr><td class="c">2</td><td class="c">~5 kg</td><td>4/5 <small>1T</small></td><td>4/5 <small>1T</small></td></tr>
           </tbody></table></div><p class="fine-print">Five trials per viewpoint and condition. Failures: F force, T trajectory, P partial opening.</p>
         </div>
+      </div>
+    </div>
+  </section>
+  <section class="section band" id="simulation">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Force Profile versus Constant Push</h2>
+      <p class="section-intro">MuJoCo simulation: the same controller, gains and force cap in every panel; only the feed-forward force differs.</p>
+      <div class="sim-carousel" data-sim-carousel data-start="1" data-end="hand" aria-roledescription="carousel" aria-label="Simulation videos">
+        <div class="sim-toolbar">
+          <div class="sim-group"><span class="sim-label" id="sim-k-label">Stiffness</span><div class="sim-toggle" role="group" aria-labelledby="sim-k-label"><button type="button" data-k="100" aria-pressed="true">100 N/m</button><button type="button" data-k="300" aria-pressed="false">300 N/m</button></div></div>
+          <div class="sim-toggle" role="group" aria-label="What the panel meets at the end of its travel"><button type="button" data-end="stop" aria-pressed="false">rigid stop at the end</button><button type="button" data-end="hand" aria-pressed="true">hand at the end</button></div>
+        </div>
+        <div class="sim-stage">
+          <div class="sim-viewport"><div class="sim-track">
+            <figure class="sim-slide" data-twin="drawer" aria-roledescription="slide" aria-label="1 of 4: Drawer"><video muted loop playsinline preload="metadata" poster="videos/sim/drawer_hand_in_gap_K100.jpg?v=20261110e" src="videos/sim/drawer_hand_in_gap_K100.mp4?v=20261110e" width="1280" height="1084" aria-label="Drawer: the same controller with four feed-forward forces, and the handle path"></video></figure>
+            <figure class="sim-slide" data-twin="drawer_with_contents" aria-roledescription="slide" aria-label="2 of 4: Drawer with contents"><video muted loop playsinline preload="metadata" poster="videos/sim/drawer_with_contents_hand_in_gap_K100.jpg?v=20261110e" src="videos/sim/drawer_with_contents_hand_in_gap_K100.mp4?v=20261110e" width="1280" height="1084" aria-label="Drawer with contents: the same controller with four feed-forward forces, and the handle path"></video></figure>
+            <figure class="sim-slide" data-twin="drawer_with_35kg_block" aria-roledescription="slide" aria-label="3 of 4: Drawer with a 35 kg block"><video muted loop playsinline preload="metadata" poster="videos/sim/drawer_with_35kg_block_hand_in_gap_K100.jpg?v=20261110e" src="videos/sim/drawer_with_35kg_block_hand_in_gap_K100.mp4?v=20261110e" width="1280" height="1084" aria-label="Drawer with a 35 kg block: the same controller with four feed-forward forces, and the handle path"></video></figure>
+            <figure class="sim-slide" data-twin="oven_door" aria-roledescription="slide" aria-label="4 of 4: Oven door"><video muted loop playsinline preload="metadata" poster="videos/sim/oven_door_hand_in_gap_K100.jpg?v=20261110e" src="videos/sim/oven_door_hand_in_gap_K100.mp4?v=20261110e" width="1280" height="1084" aria-label="Oven door: the same controller with four feed-forward forces, and the handle path"></video></figure>
+          </div></div>
+          <div class="sim-overlay"><button class="sim-nav sim-prev" type="button" aria-label="Previous object">&#8249;</button><button class="sim-nav sim-next" type="button" aria-label="Next object">&#8250;</button></div>
+        </div>
+        <div class="sim-tabs" role="tablist" aria-label="Choose an object"><button type="button" role="tab" data-go="0" aria-selected="false">Drawer</button><button type="button" role="tab" data-go="1" aria-selected="true">Drawer with contents</button><button type="button" role="tab" data-go="2" aria-selected="false">Drawer with a 35 kg block</button><button type="button" role="tab" data-go="3" aria-selected="false">Oven door</button></div>
       </div>
     </div>
   </section>
