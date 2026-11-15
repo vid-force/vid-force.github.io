@@ -136,7 +136,10 @@ table.overview.compact th, table.overview.compact td { padding: 4px 8px; }
 .paper-details.more[open] summary { margin-bottom: 14px; }
 /* Spot trial table: viewpoint and load as their own centred columns (2026-10-05) */
 table.spot th.c, table.spot td.c { text-align: center; }
-table.spot th[rowspan] { vertical-align: middle; }
+table.spot th[rowspan], table.spot td[rowspan] { vertical-align: middle; }
+/* Spot trial table on narrow screens: failure codes below the count, tighter columns */
+@media (max-width: 560px) { table.spot td small { display: block; } }
+@media (max-width: 480px) { table.spot th, table.spot td { padding-inline: 3px; } }
 /* Robot deployment: two execution clips side by side (2026-10-05) */
 .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .video-tile { position: relative; }
