@@ -128,12 +128,11 @@
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Robot Deployment</h2>
       <div class="robot-grid">
-        <figure class="video-pair">
-          <div class="video-grid">
-            <div class="video-tile"><video autoplay muted loop playsinline preload="metadata" poster="videos/spot_oven.jpg" width="1280" height="720" aria-label="Spot opening the oven door from a human demonstration"><source src="videos/spot_oven.mp4" type="video/mp4"></video><span class="tag">Oven door</span></div>
-            <div class="video-tile"><video autoplay muted loop playsinline preload="metadata" poster="videos/spot_drawer.jpg" width="1280" height="720" aria-label="Spot opening the drawer from a human demonstration"><source src="videos/spot_drawer.mp4" type="video/mp4"></video><span class="tag">Drawer</span></div>
-          </div>
-          <figcaption>Spot opens the oven door and the drawer from human demonstrations.</figcaption>
+        <figure class="video-figure">
+          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/spot_oven_constant_vs_profile.jpg" width="1280" height="720" aria-label="Spot at the oven door in five parts: with a constant force of 40 N the gripper is stuck, with 50 N the door opens and closes again, with 60 N it opens; with the predicted force profile it opens; in the last part the gripper misses the handle">
+            <source src="videos/spot_oven_constant_vs_profile.mp4" type="video/mp4">
+          </video>
+          <figcaption><strong>Spot at the oven door, trajectories from human demonstrations.</strong> A constant force of 40, 50 and 60&nbsp;N, then the predicted force profile. A trajectory error follows.</figcaption>
         </figure>
         <div><p>Oven: <strong>7/10 with force</strong>, 0/10 without. Drawer: 9/10 in both conditions.</p>
           <div class="table-container"><table class="table is-fullwidth spot"><caption>Successful openings / trials</caption><thead><tr><th scope="col">Object</th><th scope="col" class="c">Viewpoint</th><th scope="col" class="c">Load</th><th scope="col">Without force</th><th scope="col">With force</th></tr></thead><tbody>
