@@ -136,10 +136,10 @@
           <figcaption>Spot opens the oven door and the drawer from human demonstrations.</figcaption>
         </figure>
         <figure class="video-figure">
-          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/spot_oven_constant_vs_profile.jpg" width="1280" height="720" aria-label="Spot at the oven door in five parts: with a constant force of 40 N the gripper is stuck, with 50 N the door opens and closes again, with 60 N it opens; with the predicted force profile it opens; in the last part the gripper misses the handle">
-            <source src="videos/spot_oven_constant_vs_profile.mp4" type="video/mp4">
+          <video controls autoplay muted loop playsinline preload="metadata" poster="videos/spot_oven_forces.jpg" width="1280" height="720" aria-label="Spot at the oven door in five parts: with a constant force of 40 N the gripper is stuck, with 50 N the door opens and closes again, with 60 N it opens and the run is stopped at the safe limit; with the predicted force profile it opens and the force stays below the limit; in the last part the gripper misses the handle. A plot in the lower left shows the commanded and the measured force at the gripper as the run goes on">
+            <source src="videos/spot_oven_forces.mp4" type="video/mp4">
           </video>
-          <figcaption><strong>Oven door with a constant force.</strong> 40, 50 and 60&nbsp;N, then the predicted force profile. A trajectory error follows.</figcaption>
+          <figcaption><strong>Oven door with a constant force.</strong> 40, 50 and 60&nbsp;N, then the predicted force profile, with the commanded and measured force at the gripper. A trajectory error follows.</figcaption>
         </figure>
         <div><p>Oven: <strong>7/10 with the force profile</strong>, 0/10 with a constant force, 0/10 without force. Drawer: 9/10 with the force profile, 9/10 with a constant force, 8/10 without force.</p>
           <div class="table-container"><table class="table is-fullwidth spot"><caption>Successful openings / trials</caption><thead><tr><th scope="col">Object</th><th scope="col" class="c">Viewpoint</th><th scope="col" class="c">Load</th><th scope="col">Without force</th><th scope="col" colspan="2">Constant force</th><th scope="col">Force profile</th></tr></thead><tbody>
